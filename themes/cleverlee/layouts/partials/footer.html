@@ -8,11 +8,10 @@
     返回顶部
 </div>
 
-<script src="//cdn.bootcss.com/highlight.js/9.10.0/highlight.min.js"></script>
+<script src="{{ $.Site.Params.resources.cdn }}/highlight.js/9.10.0/highlight.min.js"></script>
 {{ range .Site.Params.highlight.languages }}
-<script src="//cdn.bootcss.com/highlight.js/9.10.0/languages/{{ . }}.min.js"></script>
+<script src="{{ $.Site.Params.resources.cdn }}/highlight.js/9.10.0/languages/{{ . }}.min.js"></script>
 {{ end }}
-<script src="{{ .Site.BaseURL }}/js/lunr.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 {{ if .Site.GoogleAnalytics }}
 {{ template "_internal/google_analytics_async.html" . }}

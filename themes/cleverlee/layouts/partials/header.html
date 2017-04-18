@@ -5,12 +5,13 @@
 <meta name="keywords" content="{{ with .Keywords }}{{ delimit . ", " }}{{ else }}{{ delimit .Site.Params.meta.keywords ", " }}{{ end }}">
 <meta content="{{ $isHomePage := eq .Title .Site.Title }}{{ .Title }}{{ if eq $isHomePage false }} - {{ .Site.Title }}{{ end }}" property="og:title">
 <title>{{ .Title }}{{ if eq .IsHome false }} | {{ .Site.Title }}{{ end }}</title>
-<link rel="shortcut icon" href="{{ .Site.BaseURL }}/images/favicon.ico">
-<link rel="stylesheet" href="{{ .Site.BaseURL }}/css/style.css">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="shortcut icon" href="{{ .Site.BaseURL }}images/favicon.ico">
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css">
+<link href="{{ $.Site.Params.resources.cdn }}/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 {{ with .Site.Params.highlight.style }}
-<link href="//cdn.bootcss.com/highlight.js/9.10.0/styles/{{ . }}.min.css" rel="stylesheet">
+<link href="{{ $.Site.Params.resources.cdn }}/highlight.js/9.10.0/styles/{{ . }}.min.css" rel="stylesheet">
 {{ else }}
-<link href="//cdn.bootcss.com/highlight.js/9.10.0/styles/default.min.css" rel="stylesheet">
+<link href="{{ $.Site.Params.resources.cdn }}/highlight.js/9.10.0/styles/default.min.css" rel="stylesheet">
 {{ end }}
-<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="{{ $.Site.Params.resources.cdn }}/jquery/3.2.1/jquery.min.js"></script>
+<script src="{{ .Site.BaseURL }}js/lunr.min.js"></script>

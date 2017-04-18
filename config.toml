@@ -34,3 +34,6 @@ description = "飞鸿的个人主页"
 
 [Params.meta]
     keywords = ["飞鸿", "cleverlee"]
+
+[Params.resources]
+    cdn = "//cdn.bootcss.com"
