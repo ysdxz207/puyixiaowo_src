@@ -2,7 +2,7 @@ baseurl = "//ysdxz207.github.io/puyixiaowo/"
 languageCode = "en"
 title = "小猴子"
 theme = "cleverlee"
-paginate = "10" # Number of posts per page
+paginate = "6" # Number of posts per page
 copyright = "&copy; <a href=\"//github.com/ysdxz207\" target=\"_blank\">ysdxz207</a> 2017"
 disqusShortname = "shortname"
 googleAnalytics = "" # Enable Google Analytics by entering your tracking id
