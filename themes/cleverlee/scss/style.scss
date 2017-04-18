@@ -1,0 +1,98 @@
+// Override initial variables here
+// You can add new ones or update existing ones:
+
+$blue: #72d0eb; // Update blue
+$grey-dark: #4a4a4a; // Add pink
+$orange: #ff754d;
+$family-serif: "Georgia", serif; // Add a serif family
+
+// Override generated variables here
+// For example, by default, the $danger color is $red and the font is sans-serif
+// You can change these values:
+
+$primary: $grey-dark;
+$family-primary: $family-serif; // Use the new serif family
+$link-hover: $orange;
+
+@import "bulma";
+
+/*
+ * nav
+ */
+$nav-backgroud-color: $primary;
+$nav-color: $white;
+
+/*
+ * content
+ */
+$content-margin-top: 3em;
+/*
+ * footer
+ */
+$footer-background-color: $white;
+
+.container {
+  max-width: 1200px;
+  //background-color: $orange;
+  margin: 0 auto;
+}
+
+.content {
+  margin-top: $content-margin-top;
+  //background-color: $main-background-color;
+}
+
+code {
+  color: inherit;
+  background-color: transparent;
+  font-size: 90%;
+}
+
+.footer {
+  background-color: $footer-background-color;
+}
+
+.side-bar {
+  max-width: 220px;
+}
+
+.widget-card {
+  max-height: 40px;
+}
+
+.nav {
+  background-color: $nav-backgroud-color;
+
+  h1 {
+    color: $white;
+  }
+}
+
+.tag-content {
+  line-height: 2em;
+  padding: 20px 10px;
+}
+
+.backtotop {
+  z-index: 999;
+  position: fixed;
+  right: 80px;
+  bottom: 200px;
+  cursor: pointer;
+  background-color: $grey-light;
+  color: $white;
+  opacity: 0.4;
+  padding: 0.5rem;
+}
+
+.backtotop:hover {
+  background-color: $grey-dark;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}

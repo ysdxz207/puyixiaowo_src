@@ -1,0 +1,15 @@
+{{ if .Site.Params.widgets.recent_articles }}
+
+
+<div class="tile is-child card widget-card">
+    <nav class="panel">
+        <p class="panel-heading">
+            最新文章
+        </p>
+        {{ range where .Data.Pages "Section" "!=" "posts" }}
+        <a class="panel-block" href="{{ .RelPermalink }}" title="{{ .Title }}">{{ .Title | markdownify  }}</a>
+        {{ end }}
+    </nav>
+</div>
+
+{{ end }}

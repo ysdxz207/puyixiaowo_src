@@ -1,0 +1,12 @@
+<div class="tile is-parent is-vertical is-9 search_content">
+    <article class="tile is-child">
+        <h1 class="title">{{ .Title }}</h1>
+        <h2 class="subtitle is-6">{{ .Date.Format "2006-01-02 15:04:05" }}</h2>
+        {{ if .Params.tags }}
+        {{ partial "list_tags" .Params.tags }}
+        {{ end }}
+        <div class="content">
+            {{ .Content }}
+        </div>
+    </article>
+</div>

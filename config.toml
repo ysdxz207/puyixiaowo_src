@@ -1,0 +1,32 @@
+baseurl = "//ysdxz207.github.io/puyixiaowo/"
+languageCode = "en"
+title = "小猴子"
+theme = "cleverlee"
+paginate = "10" # Number of posts per page
+copyright = "&copy; <a href=\"//github.com/ysdxz207\" target=\"_blank\">ysdxz207</a> 2017"
+disqusShortname = "shortname"
+googleAnalytics = "" # Enable Google Analytics by entering your tracking id
+description = "Your personal description"
+keywords = ["keyword1", "keyword2"]
+
+[taxonomies]
+tag = "tags"
+category = "categories"
+
+[params]
+
+[Params.highlight]
+style = "github"
+languages = ["go", "dockerfile"]
+
+
+[Params.widgets]
+    search = true # Enable "Search" widget
+    recent_articles = true # Enable "Recent arcticles" widget
+    categories = true # Enable "Categories" widget
+    tags = true # Enable "Tags" widget
+    tags_counter = false # Enable counter for each tag in "Tags" widget (disabled by default)
+
+#[[Params.social]]
+#url = "/"
+#fa_icon = "fa-github"

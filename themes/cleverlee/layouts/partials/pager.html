@@ -1,0 +1,40 @@
+<nav class="pagination level is-mobile">
+    <div class="level-left">
+        <div class="level-item">
+            {{ if .Paginator.HasPrev }}
+            <a class="pagination-previous" href="{{ .Paginator.Prev.URL }}">
+            <span class="icon is-small is-marginless">
+              <i class="fa fa-angle-left"></i>
+            </span>
+                上一页
+            </a>
+            {{ else }}
+            <a class="pagination-previous is-disabled">
+            <span class="icon is-small is-marginless">
+              <i class="fa fa-angle-left"></i>
+            </span>
+                上一页
+            </a>
+            {{ end }}
+        </div>
+    </div>
+    <div class="level-right is-marginless">
+        <div class="level-item">
+            {{ if .Paginator.HasNext }}
+            <a class="pagination-previous is-primary" href="{{ .Paginator.Next.URL }}">
+                下一页
+                <span class="icon is-small is-marginless">
+              <i class="fa fa-angle-right"></i>
+            </span>
+            </a>
+            {{ else }}
+            <a class="pagination-previous is-disabled">
+                下一页
+                <span class="icon is-small is-marginless">
+              <i class="fa fa-angle-right"></i>
+            </span>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</nav>

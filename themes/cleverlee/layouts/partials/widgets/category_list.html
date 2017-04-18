@@ -1,0 +1,22 @@
+{{ if .Site.Params.widgets.categories }}
+{{ if isset .Site.Taxonomies "categories" }}
+{{ if not (eq (len .Site.Taxonomies.categories) 0) }}
+
+<div class="tile is-child card widget-card">
+    <nav class="panel">
+        <p class="panel-heading">
+            分类
+        </p>
+        {{ range $name, $items := .Site.Taxonomies.categories }}
+        <a class="panel-block is-active"
+           href="{{ $.Site.BaseURL }}categories/{{ $name | urlize | lower }}"
+           title="{{ $name }}">
+            {{ $name | title }}
+        </a>
+        {{ end }}
+    </nav>
+</div>
+{{ end }}
+{{ end }}
+{{ end }}
+

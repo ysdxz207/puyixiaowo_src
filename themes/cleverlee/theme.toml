@@ -1,0 +1,12 @@
+name = "cleverlee"
+license = "MIT"
+licenselink = "https://github.com/ysdxz207/puyixiaowo_src/blob/master/LICENSE"
+description = "Just a hugo theme"
+homepage = "https://ysdxz207.github.io/puyixiaowo"
+tags = ["blog", "company"]
+features = ["blog", ]
+min_version = 0.01
+
+[author]
+    name = "ysdxz207"
+    homepage = "https://ysdxz207.github.io/puyixiaowo"

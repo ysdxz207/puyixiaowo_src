@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html{{ with .Site.LanguageCode }} lang="{{ . }}"{{ end }}>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="TPUA2XmIs20p4v1UUQnF4f5rkJKoHVj5xxXwAY7qAfI" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="{{ delimit .Keywords ", " }}" name="keywords">
+<meta content="{{ $isHomePage := eq .Title .Site.Title }}{{ .Title }}{{ if eq $isHomePage false }} - {{ .Site.Title }}{{ end }}" property="og:title">
+<title>{{ .Title }}{{ if eq .IsHome false }} | {{ .Site.Title }}{{ end }}</title>
+<link rel="stylesheet" href="{{ .Site.BaseURL }}/css/style.css">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+{{ with .Site.Params.highlight.style }}
+<link href="//cdn.bootcss.com/highlight.js/9.10.0/styles/{{ . }}.min.css" rel="stylesheet">
+{{ else }}
+<link href="//cdn.bootcss.com/highlight.js/9.10.0/styles/default.min.css" rel="stylesheet">
+{{ end }}
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>

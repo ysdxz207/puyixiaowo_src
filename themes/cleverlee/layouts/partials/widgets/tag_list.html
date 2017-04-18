@@ -1,0 +1,31 @@
+{{ if .Site.Params.widgets.tags }}
+{{ if isset .Site.Taxonomies "tags" }}
+{{ if not (eq (len .Site.Taxonomies.tags) 0) }}
+
+<div class="tile is-child card widget-card">
+    <nav class="panel">
+        <p class="panel-heading">
+            标签
+        </p>
+        <div class="tag-content">
+            {{ range $name, $items := .Site.Taxonomies.tags }}
+            <a class="tag is-primary" href="{{ $.Site.BaseURL }}tags/{{ $name | urlize | lower }}" title="{{ $name }}">{{ $name }}{{ if $.Site.Params.widgets.tags_counter }} ({{ $items.Count }}){{ end }}</a>
+            {{ end }}
+        </div>
+    </nav>
+</div>
+
+{{ end }}
+{{ end }}
+{{ end }}
+
+<script>
+
+    var arr = ["is-primary", "is-info", "is-success", "is-warning", "is-danger", "is-dark"];
+
+    var tags = document.getElementsByClassName("tag");
+    for (var i = 0; i < tags.length; i ++) {
+        var randomIndex = Math.floor(Math.random()*arr.length);
+        tags[i].className = "tag " + arr[randomIndex];
+    }
+</script>

@@ -1,0 +1,28 @@
+<div class="tile is-parent is-vertical is-9 search_content">
+    <div class="tile is-child">
+        {{ range sort .Paginator.Pages }}
+        <article class="box">
+            <h1 class="title"><a href="{{ .Permalink }}">{{ .Title }}</a>{{ if .Draft }} ::Draft{{ end }}</h1>
+            <h2 class="subtitle is-6">{{ .Date.Format "2006-01-02" }}</h2>
+            {{ if .Params.tags }}
+            {{ partial "list_tags" .Params.tags }}
+            {{ end }}
+            <div class="content">
+                {{substr ( .Summary | plainify | safeHTML ) 0 200}}
+                ...
+                {{ if .Truncated }}
+                ...<a class="button is-link" href="{{ .Permalink }}" style="height:28px">
+                查看更多
+                <span class="icon is-small">
+            <i class="fa fa-angle-double-right"></i>
+          </span>
+            </a>
+                {{ end }}
+            </div>
+        </article>
+        {{ end }}
+    </div>
+    <div class="tile is-child">
+        {{ partial "pager" . }}
+    </div>
+</div>

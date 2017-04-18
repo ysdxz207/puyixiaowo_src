@@ -1,0 +1,43 @@
+<footer class="footer">
+    <div class="container has-text-centered">
+        <p>{{ .Site.Copyright | safeHTML }}</p>
+    </div>
+</footer>
+
+<div class="box backtotop hide is-hidden-mobile is-hidden-tablet-only">
+    返回顶部
+</div>
+
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/highlight.min.js"></script>
+{{ range .Site.Params.highlight.languages }}
+<script src="//cdn.bootcss.com/highlight.js/9.10.0/languages/{{ . }}.min.js"></script>
+{{ end }}
+<script src="{{ .Site.BaseURL }}/js/lunr.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+{{ if .Site.GoogleAnalytics }}
+{{ template "_internal/google_analytics_async.html" . }}
+{{ end }}
+
+<script>
+    $(function () {
+        var backtotop = $('.backtotop');
+        $(window).scroll(function () {
+            var scrollY = $(document).scrollTop();
+
+            if (scrollY > 550) {
+                backtotop.removeClass('hide');
+            }
+
+            if (scrollY < 50) {
+                backtotop.addClass('hide');
+            }
+
+        });
+
+        $('.backtotop').click(function () {
+            $('html, body').animate({scrollTop: 0}, 'fast');
+        });
+    });
+
+
+</script>

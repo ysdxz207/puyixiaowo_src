@@ -1,0 +1,12 @@
+{{ partial "header" . }}
+{{ partial "nav" . }}
+
+<section class="section">
+    <div class="container">
+        <div class="tile is-ancestor">
+            {{ template "theme/_default/list/_list.html" . }}
+            {{ partial "sidebar.html" . }}
+        </div>
+    </div>
+</section>
+{{ partial "footer" . }}
