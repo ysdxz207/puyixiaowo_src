@@ -42,6 +42,8 @@ echo copy public/ to site dir...
 xcopy public\*.* %SITE_DIR%\*.* /E
 
 ::commit files
+cd %SITE_DIR%
+call git pull
 call git add .
 call git commit -m "auto commit"
 call git push

@@ -6,6 +6,7 @@
 <meta content="{{ delimit .Keywords ", " }}" name="keywords">
 <meta content="{{ $isHomePage := eq .Title .Site.Title }}{{ .Title }}{{ if eq $isHomePage false }} - {{ .Site.Title }}{{ end }}" property="og:title">
 <title>{{ .Title }}{{ if eq .IsHome false }} | {{ .Site.Title }}{{ end }}</title>
+<link rel="shortcut icon" href="{{ .Site.BaseURL }}/images/favicon.ico">
 <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/style.css">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 {{ with .Site.Params.highlight.style }}
