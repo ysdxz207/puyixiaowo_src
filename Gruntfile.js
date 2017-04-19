@@ -48,7 +48,7 @@ module.exports = function(grunt) {
         // 检测改变，自动跑sass任务
         watch: {
             scripts: {
-                files: [SCSS_PATH, CONTENT_PATH_PREFIX + '/post/*.md'],
+                files: [SCSS_PATH, CONTENT_PATH_PREFIX + '/**/*.md'],
                 tasks: ['sass', 'lunr-search'],
                 options: {
                     spawn: false
