@@ -13,7 +13,8 @@ description = "飞鸿的个人主页"
     tag = "tags"
     category = "categories"
 
-[params]
+[Params]
+
 
 
 [Params.highlight]
@@ -27,7 +28,10 @@ description = "飞鸿的个人主页"
     categories = true # Enable "Categories" widget
     tags = true # Enable "Tags" widget
     tags_counter = false # Enable counter for each tag in "Tags" widget (disabled by default)
-
+	
+	recent_articles_size = 10 #最新文章条数
+	
+	
 #[[Params.social]]
 #url = "/"
 #fa_icon = "fa-github"
