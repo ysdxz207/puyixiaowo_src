@@ -6,7 +6,7 @@
         <p class="panel-heading">
             最新文章
         </p>
-        {{ range where .Data.Pages "Section" "!=" "posts" }}
+        {{ range where .Data.Pages "Section" "post" }}
         <a class="panel-block" href="{{ .RelPermalink }}" title="{{ .Title }}">{{ .Title | markdownify  }}</a>
         {{ end }}
     </nav>
