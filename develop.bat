@@ -4,7 +4,7 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 set SITE_NAME=puyixiaowo
 set GRUNT_TASK=lunr-search
 set SITE_DIR=..\puyixiaowo
-set SITE_IGNORE=.git README.md CNAME
+set SITE_IGNORE=.git README.md CNAME resume.html
 
 
 
