@@ -34,7 +34,7 @@ description = "飞鸿的个人主页"
 	
 [[Params.social]]
     url = "/"
-    fa_icon = "fa-vcard"
+    fa_icon = "fa-handshake-o"
     title = "我的简历"
 
 [[Params.social]]
