@@ -37,17 +37,25 @@ for /f "eol=: delims=" %%F in ('dir /b /a "%SITE_DIR%" ^| findstr /vib "%SITE_IG
 		rd "!filename!" /s /q
 	)
 )
+::commit empty
+echo commit empty...
+set src=%cd%
+call:commit
 ::copy public/ to site dir
+cd !src!
 echo copy public/ to site dir...
 xcopy public\*.* %SITE_DIR%\*.* /E
 
 ::commit files
+call:commit
+echo.&pause&goto:eof
+
+::commit function
+:commit
 cd %SITE_DIR%
 call git pull
 call git add .
 call git commit -m "auto commit"
 call git push
-
+goto:eof
 ENDLOCAL
-
-pause
