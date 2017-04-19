@@ -1,6 +1,6 @@
 +++
 date = "2017-03-06T16:23:32+08:00"
-title = "idea live tempate"
+title = "idea live template"
 categories = [ "jetbrains idea" ]
 +++
 

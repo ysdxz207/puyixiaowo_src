@@ -96,3 +96,12 @@ code {
 .hide {
   display: none;
 }
+
+p.is-fullwidth {
+  display: flex;
+  width: 100%
+}
+
+.color-lightgrey{
+  color: lightgrey;
+}

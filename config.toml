@@ -1,4 +1,4 @@
-baseurl = "//ysdxz207.github.io/puyixiaowo/"
+baseurl = "//puyixiaowo.win/"
 languageCode = "en"
 title = "飞鸿"
 theme = "cleverlee"
@@ -32,9 +32,15 @@ description = "飞鸿的个人主页"
 	recent_articles_size = 10 #最新文章条数
 	
 	
-#[[Params.social]]
-#url = "/"
-#fa_icon = "fa-github"
+[[Params.social]]
+    url = "/"
+    fa_icon = "fa-vcard"
+    title = "我的简历"
+
+[[Params.social]]
+    url = "//github.com/ysdxz207?tab=repositories"
+    fa_icon = "fa-github"
+    title = "我的github主页"
 
 [Params.meta]
     keywords = ["飞鸿", "cleverlee"]
