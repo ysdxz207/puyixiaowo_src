@@ -1,5 +1,5 @@
 baseurl = "//puyixiaowo.win/"
-languageCode = "en"
+languageCode = "zh"
 title = "飞鸿"
 theme = "cleverlee"
 paginate = "6" # Number of posts per page

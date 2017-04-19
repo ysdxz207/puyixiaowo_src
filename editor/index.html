@@ -1,20 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8"/>
+    <title>写文章</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/editormd.css"/>
+</head>
 <body>
-<textarea id="text-input" oninput="this.editor.update()"
-          rows="6" cols="60">Type **Markdown** here.</textarea>
-<div id="preview"> </div>
-<script src="js/markdown.js"></script>
-<script>
-    function Editor(input, preview) {
-        this.update = function () {
-            preview.innerHTML = markdown.toHTML(input.value);
-        };
-        input.editor = this;
-        this.update();
-    }
-    var $ = function (id) { return document.getElementById(id); };
-    new Editor($("text-input"), $("preview"));
+<form action="/create">
+    <div id="layout">
+        <header>
+            <h1>写文章</h1>
+        </header>
+        <div id="write-article">
+            <textarea style="display:none;" name="mdcontent"></textarea>
+        </div>
+
+        <button>发布文章</button>
+    </div>
+</form>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/editormd.min.js"></script>
+<script type="text/javascript">
+    var testEditor;
+
+    $(function () {
+        testEditor = editormd({
+            id: "write-article",
+            width: "90%",
+            height: 780,
+            path: "lib/",
+            placeholder: "开始写文章吧！",
+            toolbarIcons: function () {
+                return [
+                    "undo", "redo", "|",
+                    "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
+                    "h1", "h2", "h3", "h4", "h5", "h6", "|",
+                    "list-ul", "list-ol", "hr", "|",
+                    "link", "reference-link", "local-image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|",
+                    "goto-line", "watch", "preview", "fullscreen", "clear", "search", "|",
+                    "help", "info"
+                ]
+            },
+            toolbarIconsClass: {
+                "local-image": "fa-image"  // 指定一个FontAawsome的图标类
+            },
+            toolbarIconTexts: {
+                "local-image": "插入图片"  // 如果没有图标，则可以这样直接插入内容，可以是字符串或HTML标签
+            },
+            // 自定义工具栏按钮的事件处理
+            toolbarHandlers: {
+                "local-image": function (cm, icon, cursor, selection) {
+                    var input = $('<input type="file"/>');
+                    input.trigger("click");
+                    input.on("change", function () {
+
+                    });
+
+                }
+            }
+        });
+    });
 </script>
 </body>
 </html>
