@@ -8,4 +8,4 @@ theme by **sass** and **bulma**
 
 ## LICENSE
 
-[MIT](https://github.com/ysdxz207/puyixiaowo_src/blob/master/LICENSE)
+License under [MIT](https://github.com/ysdxz207/puyixiaowo_src/blob/master/LICENSE)
