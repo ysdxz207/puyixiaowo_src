@@ -12,22 +12,48 @@ import (
 	"os/exec"
 	"fmt"
 	"bufio"
+	"encoding/base64"
+	"io/ioutil"
 )
+
+type Result struct {
+	Status   bool    `json:"status"`
+	Msg  string   `json:"msg"`
+	Title  string   `json:"title"`
+	Filename  string   `json:"filename"`
+	Ext  string   `json:"ext"`
+}
 
 func main() {
 	//baseDir, _ := os.Getwd()
 
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	http.Handle("/article_images/", http.StripPrefix("/article_images/", http.FileServer(http.Dir("../content/article_images/"))))
 
 
 	http.HandleFunc("/", index)
 	http.HandleFunc("/create", create)
+	http.HandleFunc("/published", published)
+	http.HandleFunc("/upload", upload)
 	http.ListenAndServe(":1314", nil)
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/" {
 		t, err := template.ParseFiles("index.html")
+		if (err != nil) {
+			log.Println(err)
+		}
+		t.Execute(w, nil)
+	} else {
+		NotFoundHandler(w, r);
+	}
+
+}
+
+func published(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path == "/published" {
+		t, err := template.ParseFiles("published.html")
 		if (err != nil) {
 			log.Println(err)
 		}
@@ -45,23 +71,51 @@ func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 func create(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/create" {
 		generateMd(w, r)
-		io.WriteString(w, "<h1 style=\"text-align: center;margin-top: 300px;\">发布中..<h1>")
 		publish(w, r)
+
+		http.Redirect(w, r, "/published", http.StatusFound)
 	} else {
 		NotFoundHandler(w, r);
 	}
 
 
 }
+
+
+func upload(w http.ResponseWriter, r *http.Request) {
+	var jsonRe Result
+	if r.URL.Path == "/upload" {
+		err := r.ParseForm()
+		if err != nil{
+			panic(err)
+		}
+		image := r.PostFormValue("image")
+		filename := r.PostFormValue("filename")
+		title := r.PostFormValue("title")
+		ext := r.PostFormValue("ext")
+
+		ddd, _ := base64.StdEncoding.DecodeString(image) //成图片文件并把文件写入到buffer
+		path := "..\\content\\article_images\\" + title + "\\"
+		os.MkdirAll(path, os.ModePerm)
+		ioutil.WriteFile(path + filename + ext, ddd, 0666)   //buffer输出到jpg文件中（不做处理，直接写到文件）
+
+		jsonRe.Msg = "成功"
+		jsonRe.Status = true
+		jsonRe.Title = title
+		jsonRe.Filename = filename
+		jsonRe.Ext = ext
+
+		jr, err := json.Marshal(jsonRe)
+		io.WriteString(w, string(jr))
+	} else {
+		NotFoundHandler(w, r);
+	}
+}
+
+
 func publish(w http.ResponseWriter, r *http.Request) {
 	cmdargs := [] string {"..\\develop.bat"}
-
-	issuccess, err := execCommand("start", cmdargs)
-	if (issuccess) {
-		http.Redirect(w, r , "success.html", http.StatusFound)
-	} else {
-		io.WriteString(w, "发布失败：" + err.Error())
-	}
+	execCommand("start", cmdargs)
 }
 
 func generateMd(w http.ResponseWriter, r *http.Request) {
@@ -76,11 +130,11 @@ func generateMd(w http.ResponseWriter, r *http.Request) {
 
 	pubDate := time.Now().Format("2006-01-02T15:04:05+08:00")
 
-	filename := title + ".md"
+	filename := "..\\content\\post\\" + title + ".md"
 
 	sub := "+++" + "\n"
-	sub = sub + "date = " + pubDate + "\n"
-	sub = sub + "title = " + title + "\n"
+	sub = sub + "date = \"" + pubDate + "\"\n"
+	sub = sub + "title = \"" + title + "\"\n"
 	jsonTags, _ := json.Marshal(strings.Split(tags, ","))
 	sub = sub + "tags = " + string(jsonTags) + "\n"
 	jsonCategories, _ := json.Marshal(strings.Split(categories, ","))
@@ -89,11 +143,11 @@ func generateMd(w http.ResponseWriter, r *http.Request) {
 
 	mdcontent = sub + mdcontent
 
-
 	createfile(filename, mdcontent)
 }
 
 func createfile(filename string, str_content string)  {
+
 	fd,_:=os.OpenFile(filename,os.O_RDWR|os.O_CREATE,0644)
 	buf:=[]byte(str_content)
 	fd.Write(buf)
@@ -114,7 +168,6 @@ func execCommand(commandName string, params []string) (bool, error) {
 	}
 
 	cmd.Start()
-
 	reader := bufio.NewReader(stdout)
 
 	//实时循环读取输出流中的一行内容

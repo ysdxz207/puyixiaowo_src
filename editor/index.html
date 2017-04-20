@@ -57,15 +57,67 @@
             // 自定义工具栏按钮的事件处理
             toolbarHandlers: {
                 "local-image": function (cm, icon, cursor, selection) {
+                    var title = $('.title').val();
+                    if (!title) {
+                        alert("请先填写文章标题");
+                        return;
+                    }
                     var input = $('<input type="file"/>');
                     input.trigger("click");
                     input.on("change", function () {
+                        var files = this.files;
+                        var reader = new FileReader();
+                        reader.readAsDataURL(files[0]);
+                        reader.onload = function(e) {
+                            var data = {};
+                            data.title = title;
+                            data.filename = input.val().substring(input.val().lastIndexOf("\\") + 1, input.val().lastIndexOf("."));
+                            data.ext = input.val().substring(input.val().lastIndexOf("."));
+                            data.image = this.result.replace(/^.*?,/, "");
+                            upload(data, function(rs) {
+                                insertImgContent(rs, cm, icon, cursor, selection)
+                            });
+                        }
 
                     });
 
                 }
             }
         });
+
+        var insertImgContent = function(rs, cm, icon, cursor, selection){
+            if(rs.status === true) {
+                //var cursor    = cm.getCursor();     //获取当前光标对象，同cursor参数
+                //var selection = cm.getSelection();  //获取当前选中的文本，同selection参数
+
+                // 替换选中文本，如果没有选中文本，则直接插入
+                cm.replaceSelection("![" + rs.filename + "](" + "/article_images/" + rs.title + "/" + rs.filename + rs.ext + ")");
+
+                // 如果当前没有选中的文本，将光标移到要输入的位置
+                if(selection === "") {
+                    cm.setCursor(cursor.line, cursor.ch + 1);
+                }
+
+                // this == 当前editormd实例
+                console.log("testIcon =>", this, cm, icon, cursor, selection);
+            } else {
+                alert("插入图片失败");
+            }
+        };
+
+        var upload = function(data, callback) {
+            $.ajax({
+                type: "POST",
+                url: "/upload",
+                traditional :true,
+                // contentType: "application/json",
+                // data: JSON.stringify(data),
+                data: data,
+                success: function(rs) {
+                    callback(JSON.parse(rs))
+                }
+            });
+        };
     });
 </script>
 </body>

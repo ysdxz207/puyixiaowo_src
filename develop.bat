@@ -3,8 +3,9 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 ::::::::::::::::::::::::::::::
 set SITE_NAME=puyixiaowo
 set GRUNT_TASK=lunr-search
-set SITE_DIR=..\puyixiaowo
-set SITE_IGNORE=.git README.md CNAME resume.html
+set SITE_DIR=D:\workspace\hugo\puyixiaowo
+set SRC_DIR=D:\workspace\hugo\puyixiaowo_src
+set SITE_IGNORE=.git README.md CNAME
 
 
 
@@ -13,7 +14,7 @@ set SITE_IGNORE=.git README.md CNAME resume.html
 set TEMP_DIR= %temp%\%SITE_NAME%
 
 ::delete public dir
-
+cd %SRC_DIR%
 echo delete public dir...
 if exist "public" (
 	rd public /s /q
@@ -39,16 +40,17 @@ for /f "eol=: delims=" %%F in ('dir /b /a "%SITE_DIR%" ^| findstr /vib "%SITE_IG
 )
 ::commit empty
 echo commit empty...
-set src=%cd%
 call:commit
 ::copy public/ to site dir
-cd !src!
+cd %SRC_DIR%
 echo copy public/ to site dir...
-xcopy public\*.* %SITE_DIR%\*.* /E
+xcopy public\*.* %SITE_DIR%\*.* /E /Y
 
 ::commit files
 call:commit
-echo.&pause&goto:eof
+::echo.&pause&goto:eof
+exit
+
 
 ::commit function
 :commit
