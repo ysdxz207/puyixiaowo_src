@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="/static/css/editormd.css"/>
 </head>
 <body>
-<form action="/create" method="post" >
+<form action="/create" method="post" id="form">
+    <input type="hidden" name="isPublish" value="false"/>
     <div id="layout">
         <header>
             <h1>写文章</h1>
@@ -21,7 +22,8 @@
             <textarea style="display:none;" name="mdcontent"></textarea>
         </div>
         <div class="button-group">
-            <button class="button-publish" type="submit">发布文章</button>
+            <button class="button-publish save" type="button">保存文章</button>
+            <button class="button-publish" type="button" onclick="isPublish.value='true';form.submit()">保存并发布文章</button>
         </div>
     </div>
 </form>
@@ -118,6 +120,19 @@
                 }
             });
         };
+
+        var validate = function() {
+            if (!$('.title').val()) {
+                return false;
+            }
+            return true;
+        }
+
+        $('.save').on("click", function(){
+            if (validate()) {
+                form.submit();
+            }
+        })
     });
 </script>
 </body>

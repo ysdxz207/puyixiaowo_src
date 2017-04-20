@@ -70,9 +70,17 @@ func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 
 func create(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/create" {
-		generateMd(w, r)
-		publish(w, r)
+		err := r.ParseForm()
+		if err != nil{
+			panic(err)
+		}
+		isPublish := r.PostFormValue("isPublish")
 
+		generateMd(w, r)
+
+		if (isPublish == "true") {
+			publish(w, r)
+		}
 		http.Redirect(w, r, "/published", http.StatusFound)
 	} else {
 		NotFoundHandler(w, r);
