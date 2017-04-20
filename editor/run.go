@@ -55,8 +55,12 @@ func create(w http.ResponseWriter, r *http.Request) {
 }
 func publish(w http.ResponseWriter, r *http.Request) {
 	cmdargs := [] string {"..\\develop.bat"}
-	if (execCommand("call", cmdargs)) {
+
+	issuccess, err := execCommand("start", cmdargs)
+	if (issuccess) {
 		http.Redirect(w, r , "success.html", http.StatusFound)
+	} else {
+		io.WriteString(w, "发布失败：" + err.Error())
 	}
 }
 
@@ -96,7 +100,7 @@ func createfile(filename string, str_content string)  {
 	fd.Close()
 }
 
-func execCommand(commandName string, params []string) bool {
+func execCommand(commandName string, params []string) (bool, error) {
 	cmd := exec.Command(commandName, params...)
 
 	//显示运行的命令
@@ -106,7 +110,7 @@ func execCommand(commandName string, params []string) bool {
 
 	if err != nil {
 		fmt.Println(err)
-		return false
+		return false, err
 	}
 
 	cmd.Start()
@@ -123,5 +127,5 @@ func execCommand(commandName string, params []string) bool {
 	}
 
 	cmd.Wait()
-	return true
+	return true, nil
 }
