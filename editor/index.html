@@ -3,24 +3,30 @@
 <head>
     <meta charset="utf-8"/>
     <title>写文章</title>
-    <link rel="stylesheet" href="/css/style.css"/>
-    <link rel="stylesheet" href="/css/editormd.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="stylesheet" href="/static/css/editormd.css"/>
 </head>
 <body>
-<form action="/create">
+<form action="/create" method="post" >
     <div id="layout">
         <header>
             <h1>写文章</h1>
         </header>
+        <div class="title-content">
+            标题：<input type="text" name="title" class="title"/>
+            标签(英文逗号分隔)：<input type="text" name="tags" class="tags"/>
+            分类(英文逗号分隔)：<input type="text" name="categories" class="categories"/>
+        </div>
         <div id="write-article">
             <textarea style="display:none;" name="mdcontent"></textarea>
         </div>
-
-        <button>发布文章</button>
+        <div class="button-group">
+            <button class="button-publish" type="submit">发布文章</button>
+        </div>
     </div>
 </form>
-<script src="/js/jquery.min.js"></script>
-<script src="/js/editormd.min.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/editormd.min.js"></script>
 <script type="text/javascript">
     var testEditor;
 
@@ -29,7 +35,7 @@
             id: "write-article",
             width: "90%",
             height: 780,
-            path: "lib/",
+            path: "/static/lib/",
             placeholder: "开始写文章吧！",
             toolbarIcons: function () {
                 return [
