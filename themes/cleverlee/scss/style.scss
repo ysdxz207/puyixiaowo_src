@@ -109,3 +109,11 @@ p.is-fullwidth {
 .nav-item > .level-item {
   margin-right: 14px;
 }
+
+.link {
+  color: #72d0eb;
+}
+
+.link:hover {
+  color: $orange;
+}
