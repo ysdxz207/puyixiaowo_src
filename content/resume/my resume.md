@@ -15,6 +15,8 @@ title = "我的简历"
 - #### 个人作品
 
     <a href="//github.com/ysdxz207/tnews" target="_blank" class="link">tnews</a> - dubbo分布式新闻服务器以及后台管理系统，数据来源于易源
+    
+    <a href="//github.com/ysdxz207/quickrun" target="_blank" class="link">quickrun</a> - java写的快速启动小程序
 
     <a href="//github.com/ysdxz207/rich-snake" target="_blank" class="link">rich-snake</a> - 给小仙女写着玩的贪吃蛇小游戏
     

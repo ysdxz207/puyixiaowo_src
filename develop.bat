@@ -1,7 +1,7 @@
 echo off
 SETLOCAL ENABLEDELAYEDEXPANSION
 ::::::::::::::::::::::::::::::
-set SITE_NAME=puyixiaowo
+
 set GRUNT_TASK=lunr-search
 set SITE_DIR=D:\workspace\hugo\puyixiaowo
 set SRC_DIR=D:\workspace\hugo\puyixiaowo_src
@@ -11,7 +11,6 @@ set SITE_IGNORE=.git README.md CNAME robots.txt
 
 
 ::::::::::::::::::::::::::::::
-set TEMP_DIR= %temp%\%SITE_NAME%
 
 ::delete public dir
 cd %SRC_DIR%
