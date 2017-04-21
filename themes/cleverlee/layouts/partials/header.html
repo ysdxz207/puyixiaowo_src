@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html{{ with .Site.LanguageCode }} lang="{{ . }}"{{ end }}>
 <meta charset="UTF-8">
+<meta name="baidu-site-verification" content="1aycDzfbvq" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="keywords" content="{{ with .Keywords }}{{ delimit . ", " }}{{ else }}{{ delimit .Site.Params.meta.keywords ", " }}{{ end }}">
 <meta content="{{ $isHomePage := eq .Title .Site.Title }}{{ .Title }}{{ if eq $isHomePage false }} - {{ .Site.Title }}{{ end }}" property="og:title">
