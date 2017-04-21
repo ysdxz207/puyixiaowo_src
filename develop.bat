@@ -48,6 +48,7 @@ xcopy public\*.* %SITE_DIR%\*.* /E /Y
 
 ::commit files
 call:commit
+call:push
 ::echo.&pause&goto:eof
 exit
 
@@ -58,6 +59,12 @@ cd %SITE_DIR%
 call git pull
 call git add .
 call git commit -m "auto commit"
+goto:eof
+
+::push function
+:push
+cd %SITE_DIR%
 call git push
 goto:eof
+
 ENDLOCAL
