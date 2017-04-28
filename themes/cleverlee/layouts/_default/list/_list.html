@@ -9,9 +9,10 @@
             {{ partial "list_tags" .Params.tags }}
             {{ end }}
             <div class="content">
-                {{ $count := .Summary | countrunes}}
-                {{ .Summary | plainify | safeHTML | truncate 200 "..." }}
-                {{ if (gt $count 200) }}
+                {{ $count := .Summary | countrunes }}
+                {{ $maxcount := 200 }}
+                {{ .Summary | plainify | safeHTML | truncate $maxcount "..." }}
+                {{ if (gt $count $maxcount) }}
                     <a class="button read-more" href="{{ .Permalink }}" style="height:28px">
                         查看更多
                         <span class="icon is-small">
