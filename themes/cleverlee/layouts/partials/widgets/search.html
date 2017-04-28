@@ -58,6 +58,7 @@
     // Nothing crazy here, just hook up a listener on the input field
     function initUI() {
         $results = $(".search_content");
+
         $("#search").on("click", function () {
             searchAndRender();
         });
@@ -117,9 +118,11 @@
             return;
         }
 
+        $results.addClass('panel');
+
         // Only show the ten first results
         results.slice(0, 10).forEach(function (result) {
-            var $result = $("<li>");
+            var $result = $("<div class='panel-block' style='border-top: none;border-left: none;border-right: none'>");
             $result.append($("<a>", {
                 href: "{{ $.Site.BaseURL }}" + result.href,
                 text: "» " + result.title
