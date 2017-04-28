@@ -3,17 +3,11 @@
         <div class="level-item">
             {{ if .Paginator.HasPrev }}
             <a class="pagination-previous button is-primary" href="{{ .Paginator.Prev.URL }}">
-            <span class="icon is-small is-marginless">
-              <i class="fa fa-angle-left"></i>
-            </span>
-                上一页
+                <i class="fa fa-angle-double-left"></i>&nbsp;上一页
             </a>
             {{ else }}
             <button class="pagination-previous button is-disabled" disabled>
-            <span class="icon is-small is-marginless">
-              <i class="fa fa-angle-left"></i>
-            </span>
-                上一页
+                <i class="fa fa-angle-double-left"></i>&nbsp;上一页
             </button>
             {{ end }}
         </div>
@@ -22,17 +16,11 @@
         <div class="level-item">
             {{ if .Paginator.HasNext }}
             <a class="pagination-previous button is-primary" href="{{ .Paginator.Next.URL }}">
-                下一页
-                <span class="icon is-small is-marginless">
-              <i class="fa fa-angle-right"></i>
-            </span>
+                下一页&nbsp;<i class="fa fa-angle-double-right"></i>
             </a>
             {{ else }}
             <button class="pagination-previous button is-disabled" disabled>
-                下一页
-                <span class="icon is-small is-marginless">
-              <i class="fa fa-angle-right"></i>
-            </span>
+                下一页&nbsp;<i class="fa fa-angle-double-right"></i>
             </button>
             {{ end }}
         </div>
