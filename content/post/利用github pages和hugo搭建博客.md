@@ -8,7 +8,7 @@ categories = [ "前端" ]
 
 **hugo**生成静态网站，**sass+bulma**布局，**grunt**监控压缩css以及生成搜索索引文件，
 放弃使用gulp是因为node-sass总是安装不上。全文搜索引擎使用**lunr.js**,因为lunr
-不支持中文分词，故此使用**segment**分词配合使用[中文修改版lunr](https://github.com/codepiano/lunr.js)
+不支持中文分词，故此使用**segment**分词配合使用<a href="https://github.com/codepiano/lunr.js" target="_blank" class="link">中文修改版lunr</a>
 
 -----------------------
 
