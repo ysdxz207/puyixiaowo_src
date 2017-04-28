@@ -117,3 +117,15 @@ p.is-fullwidth {
 .link:hover {
   color: $orange;
 }
+
+.read-more {
+  background-color: transparent;
+  border-color: transparent;
+  color: #4a4a4a;
+  text-decoration: none;
+}
+
+.read-more:hover {
+  background-color: transparent;
+  border-color: transparent;
+}
