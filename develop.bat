@@ -5,7 +5,7 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 set GRUNT_TASK=lunr-search
 set SITE_DIR=D:\workspace\hugo\puyixiaowo
 set SRC_DIR=D:\workspace\hugo\puyixiaowo_src
-set SITE_IGNORE=.git README.md CNAME robots.txt
+set SITE_IGNORE=.git README.md CNAME robots.txt google27ebc415c0768d13.html
 
 
 

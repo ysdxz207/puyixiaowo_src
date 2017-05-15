@@ -124,7 +124,7 @@
         results.slice(0, 10).forEach(function (result) {
             var $result = $("<div class='panel-block' style='border-top: none;border-left: none;border-right: none'>");
             $result.append($("<a>", {
-                href: "{{ $.Site.BaseURL }}" + result.href,
+                href: "{{ $.Site.BaseURL }}" + result.href.substring(1),
                 text: "» " + result.title
             }));
             $results.append($result);
