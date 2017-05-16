@@ -19,13 +19,16 @@ import (
 
 type Result struct {
 	Status   bool    `json:"status"`
-	Msg  string   `json:"msg"`
-	Title  string   `json:"title"`
-	Filename  string   `json:"filename"`
-	Ext  string   `json:"ext"`
+	Msg      string   `json:"msg"`
+	Title    string   `json:"title"`
+	Filename string   `json:"filename"`
+	Ext      string   `json:"ext"`
 }
 
-
+var server_config = map[string]string{
+	"address": "http://localhost",
+	"port": "1314",
+}
 
 func main() {
 	//baseDir, _ := os.Getwd()
@@ -33,18 +36,14 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.Handle("/article_images/", http.StripPrefix("/article_images/", http.FileServer(http.Dir("../content/article_images/"))))
 
-
 	http.HandleFunc("/", index)
 	http.HandleFunc("/create", create)
 	http.HandleFunc("/published", published)
 	http.HandleFunc("/upload", upload)
 
-	http.ListenAndServe(":1314", nil)
+	http.ListenAndServe(":" + server_config["port"], nil)
 
 }
-
-
-
 
 func index(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/" {
@@ -58,7 +57,6 @@ func index(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
-
 
 func published(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/published" {
@@ -80,7 +78,7 @@ func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 func create(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/create" {
 		err := r.ParseForm()
-		if err != nil{
+		if err != nil {
 			panic(err)
 		}
 		isPublish := r.PostFormValue("isPublish")
@@ -95,15 +93,13 @@ func create(w http.ResponseWriter, r *http.Request) {
 		NotFoundHandler(w, r);
 	}
 
-
 }
-
 
 func upload(w http.ResponseWriter, r *http.Request) {
 	var jsonRe Result
 	if r.URL.Path == "/upload" {
 		err := r.ParseForm()
-		if err != nil{
+		if err != nil {
 			panic(err)
 		}
 		image := r.PostFormValue("image")
@@ -129,15 +125,14 @@ func upload(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-
 func publish(w http.ResponseWriter, r *http.Request) {
-	cmdargs := [] string {"..\\develop.bat"}
+	cmdargs := [] string{"..\\develop.bat"}
 	execCommand("start", cmdargs)
 }
 
 func generateMd(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	title := r.PostFormValue("title")
@@ -163,10 +158,10 @@ func generateMd(w http.ResponseWriter, r *http.Request) {
 	createfile(filename, mdcontent)
 }
 
-func createfile(filename string, str_content string)  {
+func createfile(filename string, str_content string) {
 
-	fd,_:=os.OpenFile(filename,os.O_RDWR|os.O_CREATE,0644)
-	buf:=[]byte(str_content)
+	fd, _ := os.OpenFile(filename, os.O_RDWR | os.O_CREATE, 0644)
+	buf := []byte(str_content)
 	fd.Write(buf)
 	fd.Close()
 }
@@ -200,12 +195,13 @@ func execCommand(commandName string, params []string) (bool, error) {
 	return true, nil
 }
 
-func startPage(){
+func startPage() {
+	addr := server_config["address"] + ":" + server_config["port"]
 	for {
 		time.Sleep(time.Second)
 
 		log.Println("Checking if started...")
-		resp, err := http.Get("http://localhost:1314")
+		resp, err := http.Get(addr)
 		if err != nil {
 			//log.Println("Failed:", err)
 			continue
@@ -220,7 +216,7 @@ func startPage(){
 		break
 	}
 	log.Printf("server has started")
-	open("http://localhost:1314")
+	open(addr)
 }
 
 func open(url string) error {
