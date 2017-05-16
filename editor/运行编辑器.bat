@@ -1,2 +1,1 @@
-start go run run.go /wait
-start http://localhost:1314
+start go run run.go

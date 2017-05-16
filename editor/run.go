@@ -14,6 +14,7 @@ import (
 	"bufio"
 	"encoding/base64"
 	"io/ioutil"
+	"runtime"
 )
 
 type Result struct {
@@ -24,9 +25,11 @@ type Result struct {
 	Ext  string   `json:"ext"`
 }
 
+
+
 func main() {
 	//baseDir, _ := os.Getwd()
-
+	go startPage()
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.Handle("/article_images/", http.StripPrefix("/article_images/", http.FileServer(http.Dir("../content/article_images/"))))
 
@@ -35,8 +38,13 @@ func main() {
 	http.HandleFunc("/create", create)
 	http.HandleFunc("/published", published)
 	http.HandleFunc("/upload", upload)
+
 	http.ListenAndServe(":1314", nil)
+
 }
+
+
+
 
 func index(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/" {
@@ -50,6 +58,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
+
 
 func published(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/published" {
@@ -189,4 +198,44 @@ func execCommand(commandName string, params []string) (bool, error) {
 
 	cmd.Wait()
 	return true, nil
+}
+
+func startPage(){
+	for {
+		time.Sleep(time.Second)
+
+		log.Println("Checking if started...")
+		resp, err := http.Get("http://localhost:1314")
+		if err != nil {
+			//log.Println("Failed:", err)
+			continue
+		}
+		resp.Body.Close()
+		if resp.StatusCode != http.StatusOK {
+			//log.Println("Not OK:", resp.StatusCode)
+			continue
+		}
+
+		// Reached this point: server is up and running!
+		break
+	}
+	log.Printf("server has started")
+	open("http://localhost:1314")
+}
+
+func open(url string) error {
+	var cmd string
+	var args []string
+
+	switch runtime.GOOS {
+	case "windows":
+		cmd = "cmd"
+		args = []string{"/c", "start"}
+	case "darwin":
+		cmd = "open"
+	default: // "linux", "freebsd", "openbsd", "netbsd"
+		cmd = "xdg-open"
+	}
+	args = append(args, url)
+	return exec.Command(cmd, args...).Start()
 }
