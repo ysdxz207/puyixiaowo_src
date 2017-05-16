@@ -216,6 +216,7 @@ func startPage() {
 		break
 	}
 	log.Printf("server has started")
+	log.Printf("Press Ctrl + C to stop server.")
 	open(addr)
 }
 
