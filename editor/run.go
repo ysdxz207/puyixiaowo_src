@@ -126,7 +126,7 @@ func upload(w http.ResponseWriter, r *http.Request) {
 }
 
 func publish(w http.ResponseWriter, r *http.Request) {
-	cmdargs := [] string{"..\\develop.bat"}
+	cmdargs := [] string{"..\\deploy.bat"}
 	execCommand("start", cmdargs)
 }
 
