@@ -2,7 +2,7 @@
 date = "2015-11-04T17:12:34+08:00"
 title = "使用jquery 的data()函数注意事项"
 tags = [ "jquery", "data" ]
-categories = [ "javascript", "前端"]
+categories = ["前端"]
 +++
 
 <div data-kindType="1" id="test"></div>
