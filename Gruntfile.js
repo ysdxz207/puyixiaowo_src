@@ -102,7 +102,8 @@ module.exports = function(grunt) {
                 .chompLeft(CONTENT_PATH_PREFIX).s;
             return {
                 title: pageName,
-                href: href.replace(/ /g, '-'),
+                href: href.replace(/ /g, '-').replace(/（/g, '').replace(/）/g, '')
+                    .replace(/\(/g, '').replace(/\)/g, ''),
                 content: segment.doSegment(pageName + S(content[2]).trim().stripTags(), {
                     simple: true,
                     stripPunctuation: true
@@ -137,7 +138,8 @@ module.exports = function(grunt) {
             pageIndex = {
                 title: frontMatter.title,
                 tags: frontMatter.tags,
-                href: href.replace(/ /g, '-'),
+                href: href.replace(/ /g, '-').replace(/（/g, '').replace(/）/g, '')
+                    .replace(/\(/g, '').replace(/\)/g, ''),
                 content: segment.doSegment(frontMatter.title + S(content[2]).trim().stripTags(), {
                     simple: true,
                     stripPunctuation: true
