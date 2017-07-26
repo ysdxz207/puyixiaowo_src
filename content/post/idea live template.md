@@ -9,6 +9,7 @@ categories = [ "jetbrains idea" ]
  * 
  * @author feihong
  * @date $DATETIME$
+ * $END$
  */
 
 groovyScript("return new Date().format('yyyy-MM-dd HH:mm:ss')", methodParameters())

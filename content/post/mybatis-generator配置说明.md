@@ -103,6 +103,7 @@ categories = ["mybatis"]
 		<table schema="&dbName;" tableName="agent" domainObjectName="Agent" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
         enableSelectByExample="false" selectByExampleQueryId="false">
 		  <property name="useActualColumnNames" value="false"/>
+		  <!--sqlStatement值也可以是SELECT UUID()或SELECT REPLACE(UUID(),'-','')-->
 		  <generatedKey column="id" sqlStatement="MySql" identity="true" />
 		  <!-- 重写字段类型，jdbcType为xxxMapper.xml中类型，javaType为java类型-->
 		  <columnOverride column="gender" jdbcType="INTEGER" javaType="Integer" />
