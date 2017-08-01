@@ -1,7 +1,7 @@
 +++
 date = "2017-06-29T21:46:29+08:00"
 title = "centos下安装mysql"
-tags = [""]
+tags = []
 categories = ["linux"]
 +++
 
